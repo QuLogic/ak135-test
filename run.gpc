@@ -1,0 +1,19 @@
+#!/bin/bash
+# Torque submission script for Sandy
+#
+#PBS -l nodes=14:ppn=16,walltime=2:00:00
+#PBS -N ak135-test
+#PBS -q sandy
+cd $PBS_O_WORKDIR
+
+# EXECUTION COMMAND; -np = nodes*ppn
+
+mpirun -np 216 ./bin/xmeshfem3D
+mpirun -np 216 ./bin/xspecfem3D
+
+# check if simulation is successful
+if ! grep "End of the simulation" OUTPUT_FILES/output_solver.txt; then
+    echo "*** The simulation did not end successfully, double check! ***"
+fi
+
+find DATABASES_MPI -type f -delete

@@ -1,0 +1,108 @@
+#!/bin/bash
+
+set -e
+
+COMMIT="$1"
+if [ -z "$COMMIT" ]; then
+	echo "No commit specified!"
+	exit
+fi
+
+module load gnu-parallel
+
+pushd ~/specfem3d_globe
+git checkout $COMMIT
+git branch bisect-test-commit $COMMIT
+OLD_AK135=yes
+if git branch --contains 7b76e2e58b880cf6707510e8b62c01d6b69d23c1 | grep bisect-test-commit 2>&1 > /dev/null; then
+OLD_AK135=no
+fi
+if git branch --contains 73cb95b07c780d5bc2c72f90165886bbfddc7669 | grep bisect-test-commit 2>&1 > /dev/null; then
+OLD_AK135=no
+fi
+if git branch --contains 65d7e8728a5a20780e63f0259de3544e3e079c68 | grep bisect-test-commit 2>&1 > /dev/null; then
+OLD_AK135=no
+fi
+git branch -D bisect-test-commit
+SHORT=`git rev-parse --short HEAD`
+sed -i \
+	-e 's/-Wl,-relax//g' \
+	-e 's/-qnostrict//g' \
+	-e 's/-qstrict//g' \
+	-e 's/-qhalt=[A-Za-z]//g' \
+	-e 's~FLAGS_CHECK="~FLAGS_CHECK="-I$HOME/specfem3d_globe ~g' \
+	flags.guess
+
+if [ ! -d "DATA" ] || [ ! -e "DATA/Par_file" ]; then
+	NEED_DIR=yes
+	mkdir -p DATA
+	cp $SCRATCH/ak135-bug/CMTSOLUTION DATA/
+	cp $SCRATCH/ak135-bug/STATIONS DATA/
+	cp $SCRATCH/ak135-bug/Par_file DATA/
+	touch \
+    DATA/crust2.0 \
+    DATA/crustmap \
+    DATA/epcrust \
+    DATA/eucrust-07 \
+    DATA/heterogen \
+    DATA/Lebedev_sea99 \
+    DATA/Montagner_model \
+    DATA/old \
+    DATA/PPM \
+    DATA/QRFSI12 \
+    DATA/s20rts \
+    DATA/s362ani \
+    DATA/s40rts \
+    DATA/Simons_model \
+    DATA/topo_bathy \
+    DATA/Zhao_JP_model
+fi
+popd
+
+function cleanup() {
+	# Reset changes
+	pushd ~/specfem3d_globe
+	if [ -n "$NEED_DIR" ]; then
+		rm -r DATA
+	fi
+	git checkout -- flags.guess
+	popd
+}
+
+trap cleanup EXIT
+
+MAIN=$SCRATCH/ak135-bug/
+#NEX=( [1]=96 [2]=144 [3]=192 [4]=240 )
+NEX=( [1]=96 [2]=144 )
+
+mkdir -p $MAIN/$SHORT
+
+
+# Test with Intel and gfortran
+#parallel --gnu --no-notice --xapply --results $MAIN/$SHORT --halt 2 \
+#	$MAIN/setup-gpc.sh ::: ifort ifort ifort ifort gfortran gfortran gfortran gfortran ::: {1..4} ::: ${NEX[*]} ::: $SHORT ::: $OLD_AK135
+parallel --gnu --no-notice --xapply --results $MAIN/$SHORT --halt 2 \
+	$MAIN/setup-gpc.sh ::: ifort ifort gfortran gfortran ::: 1 2 ::: ${NEX[*]} ::: $SHORT ::: $OLD_AK135
+
+
+# Test with xlf
+sed -i 's/-q64/-qnostrict -q64/g' ~/specfem3d_globe/flags.guess
+ssh tcs02 $MAIN/setup-tcs.sh $SHORT xlf $OLD_AK135 | tee $MAIN/$SHORT/xlf.log
+
+
+# Test with xlf strict
+sed -i 's/-qnostrict/-qstrict/g' ~/specfem3d_globe/flags.guess
+ssh tcs02 $MAIN/setup-tcs.sh $SHORT xlf_strict $OLD_AK135 | tee $MAIN/$SHORT/xlf_strict.log
+
+
+# Compile everything
+#parallel --gnu --no-notice --xapply --results $MAIN/$SHORT --halt 2 \
+#	$MAIN/compile.sh ::: \
+#	ifort ifort ifort ifort gfortran gfortran gfortran gfortran xlf xlf xlf xlf xlf_strict xlf_strict xlf_strict xlf_strict ::: \
+#	{1..4} ::: \
+#	$SHORT
+parallel --gnu --no-notice --xapply --results $MAIN/$SHORT --halt 2 \
+	$MAIN/compile.sh ::: \
+	ifort ifort gfortran gfortran xlf xlf xlf_strict xlf_strict ::: \
+	1 2 ::: \
+	$SHORT
