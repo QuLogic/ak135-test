@@ -13,6 +13,7 @@ if [ -z "$XLF" ]; then
 	exit
 fi
 OLD_AK135="$3"
+OLD_CONF="$4"
 
 NEX=( [1]=96 [2]=144 [3]=192 [4]=240 )
 
@@ -22,7 +23,17 @@ for i in {1..2}; do
 	mkdir -p $DIR
 	(
 		cd $DIR
-		~/specfem3d_globe/configure FC=xlf2003_r MPIFC=mpxlf2003_r CC=xlc_r
+		if [ "$OLD_CONF" == "yes" ]; then
+			rsync -av \
+				--exclude=.git* \
+				--exclude=utils --exclude=UTILS \
+				--exclude=EXAMPLES --exclude=examples \
+				--exclude=doc \
+				~/specfem3d_globe/ .
+			./configure FC=xlf2003_r MPIFC=mpxlf2003_r CC=xlc_r
+		else
+			~/specfem3d_globe/configure FC=xlf2003_r MPIFC=mpxlf2003_r CC=xlc_r
+		fi
 	) &
 done
 

@@ -23,6 +23,13 @@ fi
 if git branch --contains 65d7e8728a5a20780e63f0259de3544e3e079c68 | grep bisect-test-commit 2>&1 > /dev/null; then
 OLD_AK135=no
 fi
+OLD_CONF=yes
+if git branch --contains cc88b93e2978975a59e2242cff807268fcb6fa7c | grep bisect-test-commit 2>&1 > /dev/null; then
+OLD_CONF=no
+fi
+if git branch --contains 49a90b4c8b54fd721584bdb90f78aa140cafac35 | grep bisect-test-commit 2>&1 > /dev/null; then
+OLD_CONF=no
+fi
 git branch -D bisect-test-commit
 SHORT=`git rev-parse --short HEAD`
 sed -i \
@@ -80,19 +87,19 @@ mkdir -p $MAIN/$SHORT
 
 # Test with Intel and gfortran
 #parallel --gnu --no-notice --xapply --results $MAIN/$SHORT --halt 2 \
-#	$MAIN/setup-gpc.sh ::: ifort ifort ifort ifort gfortran gfortran gfortran gfortran ::: {1..4} ::: ${NEX[*]} ::: $SHORT ::: $OLD_AK135
+#	$MAIN/setup-gpc.sh ::: ifort ifort ifort ifort gfortran gfortran gfortran gfortran ::: {1..4} ::: ${NEX[*]} ::: $SHORT ::: $OLD_AK135 ::: $OLD_CONF
 parallel --gnu --no-notice --xapply --results $MAIN/$SHORT --halt 2 \
-	$MAIN/setup-gpc.sh ::: ifort ifort gfortran gfortran ::: 1 2 ::: ${NEX[*]} ::: $SHORT ::: $OLD_AK135
+	$MAIN/setup-gpc.sh ::: ifort ifort gfortran gfortran ::: 1 2 ::: ${NEX[*]} ::: $SHORT ::: $OLD_AK135 ::: $OLD_CONF
 
 
 # Test with xlf
 sed -i 's/-q64/-qnostrict -q64/g' ~/specfem3d_globe/flags.guess
-ssh tcs02 $MAIN/setup-tcs.sh $SHORT xlf $OLD_AK135 | tee $MAIN/$SHORT/xlf.log
+ssh tcs02 $MAIN/setup-tcs.sh $SHORT xlf $OLD_AK135 $OLD_CONF | tee $MAIN/$SHORT/xlf.log
 
 
 # Test with xlf strict
 sed -i 's/-qnostrict/-qstrict/g' ~/specfem3d_globe/flags.guess
-ssh tcs02 $MAIN/setup-tcs.sh $SHORT xlf_strict $OLD_AK135 | tee $MAIN/$SHORT/xlf_strict.log
+ssh tcs02 $MAIN/setup-tcs.sh $SHORT xlf_strict $OLD_AK135 $OLD_CONF | tee $MAIN/$SHORT/xlf_strict.log
 
 
 # Compile everything

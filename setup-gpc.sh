@@ -7,6 +7,7 @@ NUM=$2
 myNEX=$3
 SHORT=$4
 OLD_AK135=$5
+OLD_CONF=$6
 
 
 if [ "$COMP" == "ifort" ]; then
@@ -25,7 +26,17 @@ fi
 
 mkdir -p $SCRATCH/test_${COMP}${NUM}_${SHORT}
 cd $SCRATCH/test_${COMP}${NUM}_${SHORT}
-~/specfem3d_globe/configure
+if [ "$OLD_CONF" == "yes" ]; then
+	rsync -av \
+		--exclude=.git* \
+		--exclude=utils --exclude=UTILS \
+		--exclude=EXAMPLES --exclude=examples \
+		--exclude=doc \
+		~/specfem3d_globe/ .
+	./configure
+else
+	~/specfem3d_globe/configure
+fi
 mkdir -p OUTPUT_FILES
 mkdir -p DATABASES_MPI
 mkdir -p DATA
