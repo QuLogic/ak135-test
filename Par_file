@@ -228,3 +228,4 @@ ADIOS_FOR_UNDO_ATTENUATION      = .true.
 # For certain revisions...
 ATTENUATION_1D_WITH_3D_STORAGE  = .true.
 NT_DUMP_ATTENUATION             = 100
+ATTENUATION_NEW                 = .false.
