@@ -2,6 +2,11 @@
 
 set -e
 
+if [ "x$1" == "x-nc" ]; then
+	NO_CONF=yes
+	shift
+fi
+
 COMMIT="$1"
 if [ -z "$COMMIT" ]; then
 	echo "No commit specified!"
@@ -20,7 +25,7 @@ fi
 if git branch --contains 73cb95b07c780d5bc2c72f90165886bbfddc7669 | grep bisect-test-commit 2>&1 > /dev/null; then
 OLD_AK135=no
 fi
-if git branch --contains 65d7e8728a5a20780e63f0259de3544e3e079c68 | grep bisect-test-commit 2>&1 > /dev/null; then
+if git branch --contains 464ea9ca5acdf7fb81b07423ac6ebd9b7a542c67 | grep bisect-test-commit 2>&1 > /dev/null; then
 OLD_AK135=no
 fi
 OLD_CONF=yes
@@ -38,6 +43,7 @@ sed -i \
 	-e 's/-qstrict//g' \
 	-e 's/-qhalt=[A-Za-z]//g' \
 	-e 's~FLAGS_CHECK="~FLAGS_CHECK="-I$HOME/specfem3d_globe ~g' \
+	-e 's/-std=gnu/-std=gnu -fno-whole-file/g' \
 	flags.guess
 
 if [ ! -d "DATA" ] || [ ! -e "DATA/Par_file" ]; then
@@ -85,6 +91,8 @@ NEX=( [1]=96 [2]=144 )
 mkdir -p $MAIN/$SHORT
 
 
+if [ "$NO_CONF" != "yes" ]; then
+
 # Test with Intel and gfortran
 #parallel --gnu --no-notice --xapply --results $MAIN/$SHORT --halt 2 \
 #	$MAIN/setup-gpc.sh ::: ifort ifort ifort ifort gfortran gfortran gfortran gfortran ::: {1..4} ::: ${NEX[*]} ::: $SHORT ::: $OLD_AK135 ::: $OLD_CONF
@@ -100,6 +108,8 @@ ssh tcs02 $MAIN/setup-tcs.sh $SHORT xlf $OLD_AK135 $OLD_CONF | tee $MAIN/$SHORT/
 # Test with xlf strict
 sed -i 's/-qnostrict/-qstrict/g' ~/specfem3d_globe/flags.guess
 ssh tcs02 $MAIN/setup-tcs.sh $SHORT xlf_strict $OLD_AK135 $OLD_CONF | tee $MAIN/$SHORT/xlf_strict.log
+
+fi
 
 
 # Compile everything
