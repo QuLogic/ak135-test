@@ -1,0 +1,491 @@
+git bisect start
+# good: [facdc6e7830229c7bdc3514bb5da208b3b640c49] updates current version number to 5.1.5
+git bisect good facdc6e7830229c7bdc3514bb5da208b3b640c49
+# bad: [2a2b3303e28ec46064fd33efa5d055aef2f5f442] Merge pull request #200 from komatits/devel
+git bisect bad 2a2b3303e28ec46064fd33efa5d055aef2f5f442
+# good: [2ed3485e8fab1f4165e235ef311e6eab91ca1002] updated the small icon picture
+git bisect good 2ed3485e8fab1f4165e235ef311e6eab91ca1002
+# good: [a428497d6962da4c420d1eec95f9642aeb3e66a2] removed useless semicolons
+git bisect good a428497d6962da4c420d1eec95f9642aeb3e66a2
+# good: [69dba96b72cd05985b4e6323bb203484727a4b66] fixed a typo
+git bisect good 69dba96b72cd05985b4e6323bb203484727a4b66
+# bad: [fc7c0a7f0bb7d5f384b9fb3c8468fb686b4fc809] Merge pull request #23 from komatits/devel
+git bisect bad fc7c0a7f0bb7d5f384b9fb3c8468fb686b4fc809
+# good: [fb9abe901240a1412489555610020a3d361dae87] added Ainsworth
+git bisect good fb9abe901240a1412489555610020a3d361dae87
+# bad: [d1de5ba7ee2da8b5bdcfaca1f561755e8a1f6be6] updates undoatt routines, seismogram outputs and force vectorization routines
+git bisect bad d1de5ba7ee2da8b5bdcfaca1f561755e8a1f6be6
+# good: [4b6d7f575f38332091a34263e1faeb2de8dea9e6] fixed a typo
+git bisect good 4b6d7f575f38332091a34263e1faeb2de8dea9e6
+# skip: [55d8bff8446d2ecc9200326c01952dd9293b48c1] added a sentence about asking for exclusive use of the compute nodes
+git bisect skip 55d8bff8446d2ecc9200326c01952dd9293b48c1
+# good: [9de8996c81b564bea8e5f9ea9249666df5d74d24] done vectorizing compute_element_att_memory_cm()
+git bisect good 9de8996c81b564bea8e5f9ea9249666df5d74d24
+# skip: [4135de762f924e833497f5d6effae22a3a2d8f96] added trunk/YYYY_will_need_to_put_GPU_parameters_back_into_all_the_Parfiles_including_for_the_EXAMPLES
+git bisect skip 4135de762f924e833497f5d6effae22a3a2d8f96
+# skip: [c49f96a6b8f69154f6859fce5293bf5c180d113f] bug fix for anisotropic/transverse isotropic kernels in cuda routines; update in combine_vol_data_vtk for file output creation
+git bisect skip c49f96a6b8f69154f6859fce5293bf5c180d113f
+# skip: [3497555050acb18bdc7511b73a019e6c6f03a7ce] updates Makefile.in
+git bisect skip 3497555050acb18bdc7511b73a019e6c6f03a7ce
+# good: [c97fe608732836f956043f41d3e8085c474d4ffe] adds Makefile to UTILS/lib; updates UTILS/seis_process/ascii2sac.csh script
+git bisect good c97fe608732836f956043f41d3e8085c474d4ffe
+# skip: [501d2899d202259c120d69195a7f94c29bbabb1d] Added some Doxygen comments in the files using ADIOS.
+git bisect skip 501d2899d202259c120d69195a7f94c29bbabb1d
+# skip: [c99b71311d726830881ba765a6e24d59a3ef9420] adds LDDRK time scheme routines; adds files compute_element_att_memory.F90, update_displacement_LDDRK.f90, iterate_time_undoatt.F90 and deletes create_central_cube_buffers.f90 in solver
+git bisect skip c99b71311d726830881ba765a6e24d59a3ef9420
+# skip: [0552e83f91451d559fd43b7ea2de90f36054ecf5] Variables to be written in the header of the ADIOS output file are store in par_header.xml. This xml file is used in write_par_header_ADIOS.F90. 	new file:   setup/adios_xml_files/par_header.xml 	new file:   src/specfem3D/write_par_header_ADIOS.F90
+git bisect skip 0552e83f91451d559fd43b7ea2de90f36054ecf5
+# skip: [c081203e6685aa164c1b2264381758d7950cac5d] separates forward and backward routines; renames endings to read_mesh_databases.F90 and compute_forces_outer_core_Dev.F90 to use preprocessor directives; adds regular kernel routines
+git bisect skip c081203e6685aa164c1b2264381758d7950cac5d
+# skip: [a3fc7e51de588f742ef1ab24a5e62ba4787052f4] done adding new files in "meshfem3D"
+git bisect skip a3fc7e51de588f742ef1ab24a5e62ba4787052f4
+# skip: [0b86ea026bdf2c29c22153ff6104017ab799f394] adds cuda routines for coupling inner_core/outer_core, outer_core/crust_mantle and crust_mantle/ocean
+git bisect skip 0b86ea026bdf2c29c22153ff6104017ab799f394
+# skip: [9b5b8d65bafabe7af1e788dd2cfdc9b3568a69ee] Change adios_init to call the non xml API. 	modified:   ../../src/specfem3D/adios_manager.F90
+git bisect skip 9b5b8d65bafabe7af1e788dd2cfdc9b3568a69ee
+# skip: [87b7e662a43d337584329063ee881e3c9d00881f] includes updates ensuring forward & adjoint simulations run ok for regional_Greece_small example with all options switched on
+git bisect skip 87b7e662a43d337584329063ee881e3c9d00881f
+# skip: [63e25dc5b6c577dcdcc20487ab0c66b35a891d4f] started to merge using "meld"
+git bisect skip 63e25dc5b6c577dcdcc20487ab0c66b35a891d4f
+# skip: [655cd920e5cddd81b0c81e9ddaaa3c574f2e189b] adds another local path parameter to separate mesh files from temporary storage file; updates locate receivers routine; updates read topo file; updates check norm routines on cuda
+git bisect skip 655cd920e5cddd81b0c81e9ddaaa3c574f2e189b
+# skip: [aa579d41df6a74732eff0e00e4dc5abd0712dcff] Bug corrected. "\" was missing before adios_helpers.f90 in the file list. 	modified:   src/specfem3D/Makefile.in
+git bisect skip aa579d41df6a74732eff0e00e4dc5abd0712dcff
+# skip: [a84cc0a6fa125d431e0b5e6c6279221bb513d1a9] puts mpi interface detection to mesher; removes unused routines
+git bisect skip a84cc0a6fa125d431e0b5e6c6279221bb513d1a9
+# skip: [258cf744239d1eaf67823857cd089c873fe5ad98] updated utils/update_headers_change_word_f90.pl
+git bisect skip 258cf744239d1eaf67823857cd089c873fe5ad98
+# skip: [c99b71311d726830881ba765a6e24d59a3ef9420] adds LDDRK time scheme routines; adds files compute_element_att_memory.F90, update_displacement_LDDRK.f90, iterate_time_undoatt.F90 and deletes create_central_cube_buffers.f90 in solver
+git bisect skip c99b71311d726830881ba765a6e24d59a3ef9420
+# skip: [bf33248d2ee5d8f7f79f41c3fe641c8585718979] updates movie surface routines in solver, and auxiliary programs create_movie_AVS_DX and create_movie_GMT_global to read in new moviedata format
+git bisect skip bf33248d2ee5d8f7f79f41c3fe641c8585718979
+# skip: [464ea9ca5acdf7fb81b07423ac6ebd9b7a542c67] updates locate receivers routine; updates model ak135 modifications; removes some unused variables from save_header_file output
+git bisect skip 464ea9ca5acdf7fb81b07423ac6ebd9b7a542c67
+# skip: [c081203e6685aa164c1b2264381758d7950cac5d] separates forward and backward routines; renames endings to read_mesh_databases.F90 and compute_forces_outer_core_Dev.F90 to use preprocessor directives; adds regular kernel routines
+git bisect skip c081203e6685aa164c1b2264381758d7950cac5d
+# skip: [58e24e108285cb9a96d851e2cda7d31608cbcaa5] added a sentence about asking for exclusive use of the compute nodes
+git bisect skip 58e24e108285cb9a96d851e2cda7d31608cbcaa5
+# skip: [8dbcb1c2575fc13e42b89e3ffb1a09be9242d1d5] adds new files compute_element_strain.F90 and update_displacement_Newmark.f90; prepares some more undoatt routines; updates restart file handling for restarting/checkpointing capabilities
+git bisect skip 8dbcb1c2575fc13e42b89e3ffb1a09be9242d1d5
+# skip: [25642247a5669457a835447fa4e518f32791ee80] removes obsolete files in src/specfem3D/ assemble_MPI_central_cube_block.f90,read_arrays_buffers_solver.f90,assemble_MPI_scalar_block.f90,assemble_MPI_central_cube.f90,assemble_MPI_vector_block.f90,fix_non_blocking_flags.f90; adds file parallel.f90 for mpi wrappers; renames acoustic and elastic calling routine files; renames check_simulation_stability to check_stability for compliance with SPECFEM3D_Cartesian; adds mass matrix arrays for rotation correction
+git bisect skip 25642247a5669457a835447fa4e518f32791ee80
+# skip: [b91447a14e7eeccee23fed6e43f8ba245897babe] updates Makefiles and rules for proper compilation; adds modules for shared parameters; adds adios stubs
+git bisect skip b91447a14e7eeccee23fed6e43f8ba245897babe
+# skip: [edb3429fa698e8488d94ea09839e969bf3057557] merges commit 22724 to SUNFLOWER branch; updates model_crustmaps routines
+git bisect skip edb3429fa698e8488d94ea09839e969bf3057557
+# skip: [a6bc9907f43b1a6a5bb1f231bc363eeb5e587d99] made "-mcmodel=medium -shared-intel" optional for Intel ifort, since some releases of Intel ifort v12 create codes that are not correct when this option is used (that problem comes from the compiler, not from our code; it has been fixed in Intel ifort v13, and some releases of v12 are also OK)
+git bisect skip a6bc9907f43b1a6a5bb1f231bc363eeb5e587d99
+# skip: [fa9d0105eefbce1633df93234960bb151ccf4256] fixed a small bug (missing subroutine argument) in sac2asc.c, added missing header files and simplified the Makefile
+git bisect skip fa9d0105eefbce1633df93234960bb151ccf4256
+# skip: [7e4f69dcac96979aafe3d12b0c380ccc32c6fcd9] switched from 90% or 92% to 85% because the system apparently needs more than 8% of the memory of a node for itself (at least on some machines)
+git bisect skip 7e4f69dcac96979aafe3d12b0c380ccc32c6fcd9
+# skip: [36ddf747b6b6d17d0292bb603798613d6f7b516d] merged changes made in the trunk to fix small bugs mentioned by Min Chen into the branch
+git bisect skip 36ddf747b6b6d17d0292bb603798613d6f7b516d
+# skip: [af19f2a0cefdbcc9f00d958c576c63de8fbb209b] copied compute_optimized_dumping_undo_att.f90 from trunk to branch
+git bisect skip af19f2a0cefdbcc9f00d958c576c63de8fbb209b
+# skip: [9680add5139c0e6e1671ae9c963bbc0d22f17f7e] added replace_use_mpi_with_include_mpif_dot_h.pl
+git bisect skip 9680add5139c0e6e1671ae9c963bbc0d22f17f7e
+# skip: [a3e804d4d5c770a42e39f2296f10baddeddb9876] made the position of "use mpi" suitable for automatic replacement with "include mpif.h" based on a script
+git bisect skip a3e804d4d5c770a42e39f2296f10baddeddb9876
+# skip: [cf98b117056f1f0227a3bd62f9155729f7cf02be] added all the executables to the default Makefile (two were missing)
+git bisect skip cf98b117056f1f0227a3bd62f9155729f7cf02be
+# skip: [ca198d38562f3a6f51069844f05afdc2e2a47f59] added PGI vectorization directives
+git bisect skip ca198d38562f3a6f51069844f05afdc2e2a47f59
+# skip: [01fd519531bc3244ff18b6d0bac2bee0e3f9fd62] done with easy merges in src/specfem3D
+git bisect skip 01fd519531bc3244ff18b6d0bac2bee0e3f9fd62
+# skip: [13e8f72252eab70b30e91059cadb81295262bd61] done with easy merges in src/shared
+git bisect skip 13e8f72252eab70b30e91059cadb81295262bd61
+# skip: [1c521e5b0c3c20fc2403da9e80b1a1ce58280f74] done with easy merges in src/meshfem3D
+git bisect skip 1c521e5b0c3c20fc2403da9e80b1a1ce58280f74
+# skip: [9e328d0f93c9154dbf7745ff9bd947194c0c7479] replaced all include 'mpif.h' with use mpi
+git bisect skip 9e328d0f93c9154dbf7745ff9bd947194c0c7479
+# skip: [078961c59a9a11b1d069a65a7ea70113d4d60262] done with all the easy merges in src/specfem3D
+git bisect skip 078961c59a9a11b1d069a65a7ea70113d4d60262
+# skip: [e4e733c472b0f34cf13b1e9ecdfb6891d745e3ee] done with all the easy merges in src/shared
+git bisect skip e4e733c472b0f34cf13b1e9ecdfb6891d745e3ee
+# skip: [8d90cbdf91064137f11741d350b0ead647e6330d] done with all the easy merges in src/meshfem3D
+git bisect skip 8d90cbdf91064137f11741d350b0ead647e6330d
+# skip: [80aba9ea743c9a60bb5eaf538957169f646c3511] started to merge with "meld"
+git bisect skip 80aba9ea743c9a60bb5eaf538957169f646c3511
+# skip: [b8a6a1d456ae34286564afce189df4baf472e9c7] performed obvious merges from the trunk to the GPU branch
+git bisect skip b8a6a1d456ae34286564afce189df4baf472e9c7
+# skip: [1ee3574502c3dc50cc4de3935ada156caa74cda0] renamed some files to merge with "meld"
+git bisect skip 1ee3574502c3dc50cc4de3935ada156caa74cda0
+# skip: [01d96a45294a9d53f7472a28590d70e841ceaa25] renamed compute_kernels.f90 to compute_kernels.F90
+git bisect skip 01d96a45294a9d53f7472a28590d70e841ceaa25
+# skip: [55fe78796397d660c55611812cad5bbf977ca768] fixed a typo
+git bisect skip 55fe78796397d660c55611812cad5bbf977ca768
+# skip: [2b4447ce46bc24467c6ce6ade7a51803da7346b8] deleted figures/Logo_INRIA.jpg
+git bisect skip 2b4447ce46bc24467c6ce6ade7a51803da7346b8
+# skip: [342ab5e50578e84d26bd1263cb58e2a855cf474b] renamed src/shared/broadcast_compute_parameters.f90 to src/shared/broadcast_computed_parameters.f90
+git bisect skip 342ab5e50578e84d26bd1263cb58e2a855cf474b
+# skip: [6157f63a7ff55ae4473cb795acd104409b2de636] moved all the part*.f90 files to src/specfem3D
+git bisect skip 6157f63a7ff55ae4473cb795acd104409b2de636
+# skip: [0bbdfae0b3b028b09af2ffdc95a39df6ffe39804] fixed a small bug related to the "DEBUG" flag that I had introduced when merging some simple changes from the GPU branch back into the trunk
+git bisect skip 0bbdfae0b3b028b09af2ffdc95a39df6ffe39804
+# skip: [50a312d964e91b4845428deb645e7aef3da50f5a] re-added branches/SPECFEM3D_GLOBE_SUNFLOWER/this_branch_was_created_from_revision_r19620_of_the_trunk.txt
+git bisect skip 50a312d964e91b4845428deb645e7aef3da50f5a
+# skip: [126c880aa337d82fd7dcecb3f210025212952e57] fixed all compilation warnings that resulted from the changes I made in the last two days (merging some straightforward modifications and small bug fixes from the GPU version back into the trunk)
+git bisect skip 126c880aa337d82fd7dcecb3f210025212952e57
+# skip: [8c7adb16b1b129f60f0510bd1b7899a3b781c371] done making all the easy merges in src/specfem3D; also got rid of all the ADIOS files that I had put in the trunk
+git bisect skip 8c7adb16b1b129f60f0510bd1b7899a3b781c371
+# skip: [dbc696830398532f18b65ed83419060c60ba6b9d] more easy merges in src/specfem3D
+git bisect skip dbc696830398532f18b65ed83419060c60ba6b9d
+# skip: [ebc52cba0360f3b489f8ecac44e542245268b635] added doc/an_excellent_code_branch_comparison_is_meld.txt
+git bisect skip ebc52cba0360f3b489f8ecac44e542245268b635
+# skip: [b9136beb08b841c04fa2bcf1942e7e92a112dc5f] made a few easy merges in src/specfem3D
+git bisect skip b9136beb08b841c04fa2bcf1942e7e92a112dc5f
+# skip: [f5f546dfe7ad625a14e7fd0ae4112f388cf9b23e] done with all the easy merges in "src/shared"
+git bisect skip f5f546dfe7ad625a14e7fd0ae4112f388cf9b23e
+# skip: [258b2c8f4a670ef63a861c6b76f09cd06f9f2cf3] done merging all easy modifications in "src/meshfem3D"
+git bisect skip 258b2c8f4a670ef63a861c6b76f09cd06f9f2cf3
+# skip: [f962846ff3d40dc6a1eee928dfe9c2ae2fef6c7e] done merging all the easy changes in src/auxiliaries
+git bisect skip f962846ff3d40dc6a1eee928dfe9c2ae2fef6c7e
+# skip: [ba237cfbf859f2975f411fdc0e8506118c1e1dd2] more obvious merges
+git bisect skip ba237cfbf859f2975f411fdc0e8506118c1e1dd2
+# skip: [a09f432faca2503d0513239214e124e630078016] more obvious merges
+git bisect skip a09f432faca2503d0513239214e124e630078016
+# skip: [a22df103f756d1b554abdff66edccf5cd5628bf4] more obvious merges
+git bisect skip a22df103f756d1b554abdff66edccf5cd5628bf4
+# skip: [0bfe775baf05579746fc66256afcb091093b5150] merged more obvious things
+git bisect skip 0bfe775baf05579746fc66256afcb091093b5150
+# skip: [c85a8e24b6929051a82a4db6dbcca85df7bee585] removed white spaces, changed end if to endif, changed end do to enddo, change elseif to else if
+git bisect skip c85a8e24b6929051a82a4db6dbcca85df7bee585
+# skip: [60923b576506e3336c5f237a97a848dc74c6a083] started to do a few obvious merges
+git bisect skip 60923b576506e3336c5f237a97a848dc74c6a083
+# skip: [ef164d6dd7aa6c932b525087bc9fa373768c06f3] done merging new files in "specfem3D"
+git bisect skip ef164d6dd7aa6c932b525087bc9fa373768c06f3
+# skip: [a3fc7e51de588f742ef1ab24a5e62ba4787052f4] done adding new files in "meshfem3D"
+git bisect skip a3fc7e51de588f742ef1ab24a5e62ba4787052f4
+# skip: [86d703b31a4bc0931a659a2bd1d535841661f6e0] done merging new files in "create_header_file"
+git bisect skip 86d703b31a4bc0931a659a2bd1d535841661f6e0
+# skip: [465882fb645d97854edb809f65470023ece06fcf] done merging new files in "shared"
+git bisect skip 465882fb645d97854edb809f65470023ece06fcf
+# skip: [6fb6d700516ebca7517592fa390e3ed00271d8e8] svn added some files
+git bisect skip 6fb6d700516ebca7517592fa390e3ed00271d8e8
+# skip: [3071c084b663c27428f11d003d68f2150aee10c1] more merging
+git bisect skip 3071c084b663c27428f11d003d68f2150aee10c1
+# skip: [63e25dc5b6c577dcdcc20487ab0c66b35a891d4f] started to merge using "meld"
+git bisect skip 63e25dc5b6c577dcdcc20487ab0c66b35a891d4f
+# skip: [cc88b93e2978975a59e2242cff807268fcb6fa7c] merged or copied all the files from the root of the trunk
+git bisect skip cc88b93e2978975a59e2242cff807268fcb6fa7c
+# skip: [9bbbfe5ec6e12d48f6c3eb1dfa0a46bf1e6f490f] updated "EXAMPLES" from the trunk; will need to re-add some GPU parameters to all the Par_files later
+git bisect skip 9bbbfe5ec6e12d48f6c3eb1dfa0a46bf1e6f490f
+# skip: [c520fd51b53f789642a96af2f36496b4a04c303b] merged "utils" from the trunk
+git bisect skip c520fd51b53f789642a96af2f36496b4a04c303b
+# skip: [258cf744239d1eaf67823857cd089c873fe5ad98] updated utils/update_headers_change_word_f90.pl
+git bisect skip 258cf744239d1eaf67823857cd089c873fe5ad98
+# skip: [569adb2fb1a15813b69b5162aa77a76d7ec2e16c] renamed UTILS to utils
+git bisect skip 569adb2fb1a15813b69b5162aa77a76d7ec2e16c
+# skip: [1f12e36619cf684685b35f2d2a21ad15ee445e24] merged "doc" from the trunk
+git bisect skip 1f12e36619cf684685b35f2d2a21ad15ee445e24
+# skip: [62566b0679d995ba140c7a628bd69758f02f169e] added SPECFEM3D_GLOBE_SUNFLOWER/this_branch_was_created_from_revision_r19620_of_the_trunk.txt
+git bisect skip 62566b0679d995ba140c7a628bd69758f02f169e
+# skip: [9c2ff5c78b2e6c299eaa949e4da46196757fa011] removed SPECFEM3D_GLOBE_SUNFLOWER/this_branch_was_created_from_revision_r21488_of_the_SUNFLOWER_branch.txt
+git bisect skip 9c2ff5c78b2e6c299eaa949e4da46196757fa011
+# skip: [5edb7790c20bd82e4c5f05eb102a10e3931d1fb3] merged branches/SUNFLOWER_ADIOS into branches/SPECFEM3D_GLOBE_SUNFLOWER
+git bisect skip 5edb7790c20bd82e4c5f05eb102a10e3931d1fb3
+# skip: [b19c7b84b3d86280c96d094a94d178f3c69bcc22] added branches/SUNFLOWER_ADIOS/this_branch_was_created_from_revision_r21488_of_the_SUNFLOWER_branch.txt
+git bisect skip b19c7b84b3d86280c96d094a94d178f3c69bcc22
+# skip: [f8b6ff5700912e99da1f064c951b4960f1846140] arrays_solver written in a single adios file modified:   ../meshfem3D/save_arrays_solver_adios.F90
+git bisect skip f8b6ff5700912e99da1f064c951b4960f1846140
+# skip: [0052a04dad5fc645ec4b674be586394170fa5469] Multiple selection bounding box. One perform read for: 	modified:   ../specfem3D/read_arrays_solver_adios.f90
+git bisect skip 0052a04dad5fc645ec4b674be586394170fa5469
+# skip: [77619664d885047f2538ce99f26f245b82d15614] write_AVS_DX_* are outputing a single ADIOS file per region.
+git bisect skip 77619664d885047f2538ce99f26f245b82d15614
+# skip: [7c2e18f5c35f708e97481c14133b3cbbbcbd67f4] ADIOS used to write global faces data for AVS/DX.
+git bisect skip 7c2e18f5c35f708e97481c14133b3cbbbcbd67f4
+# skip: [e77d7c74ffa9cfccca868e53c99ce09a8e587360] Flag added for using ADIOS for AVs/DX data.
+git bisect skip e77d7c74ffa9cfccca868e53c99ce09a8e587360
+# skip: [92945118740e74d6f17bf6789dac36abfc2e90a5] ADIOS for points and elements AVS/DX Data.
+git bisect skip 92945118740e74d6f17bf6789dac36abfc2e90a5
+# skip: [501d2899d202259c120d69195a7f94c29bbabb1d] Added some Doxygen comments in the files using ADIOS.
+git bisect skip 501d2899d202259c120d69195a7f94c29bbabb1d
+# skip: [907f58748608c105845dcc2feae27f0397b8ebee] stacey mesh files saved (meshfem3d) and read (specfem3d) with ADIOS 	modified:   ../../src/meshfem3D/Makefile.in 	modified:   ../../src/meshfem3D/create_regions_mesh.f90 	modified:   ../../src/meshfem3D/get_absorb.f90 	new file:   ../../src/meshfem3D/get_absorb_adios.f90 	modified:   ../../src/meshfem3D/save_arrays_solver_adios.F90 	modified:   ../../src/specfem3D/read_mesh_databases.f90 	modified:   ../../src/specfem3D/read_mesh_databases_adios.f90 	modified:   ../../src/specfem3D/specfem3D.F90
+git bisect skip 907f58748608c105845dcc2feae27f0397b8ebee
+# skip: [d92c54d32315a7849381c79f3cbc5596407c3bb7] ADIOS_FOR_SOLVER_MESHFILES flag added. solver meshfiles are saved with adios with the prerequisite that arrays solvers are written with ADIOS as well.
+git bisect skip d92c54d32315a7849381c79f3cbc5596407c3bb7
+# skip: [13db4ebf65989de76a0c7c64de8499730a1d1eb4] attenuation and boundary databases written with ADIOS.
+git bisect skip 13db4ebf65989de76a0c7c64de8499730a1d1eb4
+# skip: [2fd27b2df31133e964d62453bc157b5aa49f3f09] procxxx_regy_solver_data.bin files saved and read with ADIOS as regy_solver_data.bp. New files added to Makefile.in. Modifications for meshfem3d/ and specfem3d/.
+git bisect skip 2fd27b2df31133e964d62453bc157b5aa49f3f09
+# skip: [dcb526d27adc261ec7faa1ea3dca23423642a86b] MPI arrays are written as adios files in the mesher and read as such in the solver. New flags to allow the user to choose wether he wants regular or adios files. Common routines moved in the src/shared/ directory.
+git bisect skip dcb526d27adc261ec7faa1ea3dca23423642a86b
+# skip: [2bc5c29346542d320d0bee0569e6e14bd4fe471b] Ability to read forward arrays for adjoint simulations. No conditional groupsize definition for saving forward arrays otherwise it messes with the buffersize. 	modified:   ../../src/specfem3D/read_forward_arrays.f90 	modified:   ../../src/specfem3D/read_forward_arrays_adios.F90 	modified:   ../../src/specfem3D/save_forward_arrays_adios.F90
+git bisect skip 2bc5c29346542d320d0bee0569e6e14bd4fe471b
+# skip: [3afef0f25fd98971a128026fde1e4d51b02e16e5] Read the ADIOS_FOR_FORWARD_ARRAYS flag and branch in forward function to call adios routines.
+git bisect skip 3afef0f25fd98971a128026fde1e4d51b02e16e5
+# skip: [103869a2cbf8b1bb2a77313c9b41d6ab0d2bddb4] Forward arrays (intermediate and finals) are written with ADIOS. intermediate forward arrays are read with adios. ADIOS_FOR_FORWARD_ARRAYS flags addded to Par_file. 	new file:   ../../src/specfem3D/read_forward_arrays_adios.F90 	new file:   ../../src/specfem3D/save_forward_arrays_adios.F90 	modified:   ../../DATA/Par_file 	modified:   DATA/Par_file 	modified:   ../../src/shared/broadcast_compute_parameters.f90 	modified:   ../../src/shared/read_parameter_file.f90 	modified:   ../../src/specfem3D/Makefile.in 	modified:   ../../src/specfem3D/adios_helpers.f90 	modified:   ../../src/specfem3D/initialize_simulation.f90 	modified:   ../../src/specfem3D/read_forward_arrays.f90 	modified:   ../../src/specfem3D/save_forward_arrays.f90 	modified:   ../../src/specfem3D/specfem3D_par.F90 	modified:   ../../src/specfem3D/write_specfem_adios_header.F90
+git bisect skip 103869a2cbf8b1bb2a77313c9b41d6ab0d2bddb4
+# skip: [62e9fc156cce63e12fc79a60714a2904b7aae608] routine to write the adios header factorized, use config.fh to save configuration files and program name+version 	modified:   configure 	modified:   setup/config.h.in 	modified:   src/specfem3D/write_specfem_adios_header.F90
+git bisect skip 62e9fc156cce63e12fc79a60714a2904b7aae608
+# skip: [78fc8778e02c4b49a9f98f0bb9f5885933195eeb] Generate a macro to config.h to store configuration flags. Convert config.h to config.fh to insert defines in F90 files 	modified:   configure.ac
+git bisect skip 78fc8778e02c4b49a9f98f0bb9f5885933195eeb
+# skip: [dd9f43e2c413d6180e9633e28ebca9b4dab817f0] Configuration file for doxygen or doxywizard. Help to produce nice auto-documentation 	new file:   doc/Doxyfile
+git bisect skip dd9f43e2c413d6180e9633e28ebca9b4dab817f0
+# skip: [66686eb10e6fcd2aab5cde728a8e8e5ec723d37f] Subroutine to write ADIOS header splitted and file doxygen-ated 	modified:   src/specfem3D/write_specfem_adios_header.F90
+git bisect skip 66686eb10e6fcd2aab5cde728a8e8e5ec723d37f
+# skip: [ebeb856a358c98f95bcab947a8d98924a0db9bc2] Routine that write the adios header renamed and a little bit factorized 	modified:   flags.guess 	modified:   src/specfem3D/Makefile.in 	modified:   src/specfem3D/initialize_simulation.f90 	renamed:    src/specfem3D/write_par_header_ADIOS.F90 -> src/specfem3D/write_specfem_adios_header.F90
+git bisect skip ebeb856a358c98f95bcab947a8d98924a0db9bc2
+# skip: [070e501d4704f0740cc85cd16e75b7d65d0b339b] Do not track vi garbagge files 	modified:   .gitignore
+git bisect skip 070e501d4704f0740cc85cd16e75b7d65d0b339b
+# skip: [3ed361661ed3abf275e04a1a60dc9ffcf341826a] Formatting and comments added to write_par_header_ADIOS 	modified:   src/specfem3D/write_par_header_ADIOS.F90
+git bisect skip 3ed361661ed3abf275e04a1a60dc9ffcf341826a
+# skip: [aa579d41df6a74732eff0e00e4dc5abd0712dcff] Bug corrected. "\" was missing before adios_helpers.f90 in the file list. 	modified:   src/specfem3D/Makefile.in
+git bisect skip aa579d41df6a74732eff0e00e4dc5abd0712dcff
+# skip: [f5fd7f549724abc1e5c049ca0ad80af5b67ecea4] Helpers for easier definitions of ADIOS variables moved on a separate file. These helpers are called by write_par_header_ADIOS (need to be cleaned). 	new file:   src/specfem3D/adios_helpers.f90 	modified:   src/specfem3D/Makefile.in 	modified:   src/specfem3D/write_par_header_ADIOS.F90
+git bisect skip f5fd7f549724abc1e5c049ca0ad80af5b67ecea4
+# skip: [49a965c9899170773e417826263f5cba1f4b23b0] Remove the autogeneration of adios includes from the xml configuration file 	modified:   Makefile.in
+git bisect skip 49a965c9899170773e417826263f5cba1f4b23b0
+# skip: [2c141c0f6b1f4418b7e7487e3c6a2069f6f1934b] Do not use xml file anymore to define variable. Do not use the autogenerated adios code as well. 	modified:   ../../src/specfem3D/write_par_header_ADIOS.F90
+git bisect skip 2c141c0f6b1f4418b7e7487e3c6a2069f6f1934b
+# skip: [9b5b8d65bafabe7af1e788dd2cfdc9b3568a69ee] Change adios_init to call the non xml API. 	modified:   ../../src/specfem3D/adios_manager.F90
+git bisect skip 9b5b8d65bafabe7af1e788dd2cfdc9b3568a69ee
+# skip: [974cfaeeaf33f214bf0e9e908852ee5e62f52146] Not sure why the configure file is in the svn repo. 	modified:   configure
+git bisect skip 974cfaeeaf33f214bf0e9e908852ee5e62f52146
+# skip: [a0a06dae978bda78cd883b2c3ea42d407c1a91ad] update in .gitignore in order to avoid 'git status' to complain 	modified:   .gitignore
+git bisect skip a0a06dae978bda78cd883b2c3ea42d407c1a91ad
+# skip: [c0e45632bf44d741429bc072098e8e5cf7182991] Auto-generate the ADIOS stubs from the configuration file into src/specfem3D Calls ADIOS gpp.py script to do so. 	modified:   Makefile.in
+git bisect skip c0e45632bf44d741429bc072098e8e5cf7182991
+# skip: [23efd88aa23c048f4094e7f184f9d9c78d454871] Makefile.in for specfem3D take ADIOS-dependant files into account 	modified:   src/specfem3D/Makefile.in
+git bisect skip 23efd88aa23c048f4094e7f184f9d9c78d454871
+# skip: [0552e83f91451d559fd43b7ea2de90f36054ecf5] Variables to be written in the header of the ADIOS output file are store in par_header.xml. This xml file is used in write_par_header_ADIOS.F90. 	new file:   setup/adios_xml_files/par_header.xml 	new file:   src/specfem3D/write_par_header_ADIOS.F90
+git bisect skip 0552e83f91451d559fd43b7ea2de90f36054ecf5
+# skip: [379d4f5236cf0eac40f98a920dfd38651b8df0c0] Routines to initialize and finalize ADIOS. Initialize_simulation also calls the routines to read and broadcast 'ADIOS_ENABLED' 	new file:   src/specfem3D/adios_manager.F90 	modified:   src/specfem3D/finalize_simulation.f90 	modified:   src/specfem3D/initialize_simulation.f90
+git bisect skip 379d4f5236cf0eac40f98a920dfd38651b8df0c0
+# skip: [6e1fe12749764b55a1494b36716d0a87c927fcd4] updates mesh ordering for setting up MPI interfaces
+git bisect skip 6e1fe12749764b55a1494b36716d0a87c927fcd4
+# skip: [e9478bc1488e2c77ecb604631fc9d9575b3fce21] updates texture usage for cuda routines
+git bisect skip e9478bc1488e2c77ecb604631fc9d9575b3fce21
+# skip: [33b8c2451f7da4b0d9ea754e7666a06833f653af] updates cuda routines to account for 1D and 3D attenuation arrays
+git bisect skip 33b8c2451f7da4b0d9ea754e7666a06833f653af
+# skip: [e07d81d618f08d644c21b6b16a8284bce17b0709] sets automatically the size of attenuation arrays according to the model defined in Par_file
+git bisect skip e07d81d618f08d644c21b6b16a8284bce17b0709
+# skip: [a834c862f9907af87680a75fdf7beba4e9438b83] updates mesher routines; updates Par_files in examples
+git bisect skip a834c862f9907af87680a75fdf7beba4e9438b83
+# skip: [3fef583ebeb6fbfd0cf390ab4d3ea205d5fbd96d] updates iterate_time() routine
+git bisect skip 3fef583ebeb6fbfd0cf390ab4d3ea205d5fbd96d
+# skip: [87b7e662a43d337584329063ee881e3c9d00881f] includes updates ensuring forward & adjoint simulations run ok for regional_Greece_small example with all options switched on
+git bisect skip 87b7e662a43d337584329063ee881e3c9d00881f
+# skip: [555f9ce80cbc8dde8c50e0ebad2876e9b5575d08] updates coupling routines
+git bisect skip 555f9ce80cbc8dde8c50e0ebad2876e9b5575d08
+# skip: [a8378b7be9ae309427a4c4f57e07effd136ca89c] fixes the previous commit in which some git messages remained
+git bisect skip a8378b7be9ae309427a4c4f57e07effd136ca89c
+# skip: [0b86ea026bdf2c29c22153ff6104017ab799f394] adds cuda routines for coupling inner_core/outer_core, outer_core/crust_mantle and crust_mantle/ocean
+git bisect skip 0b86ea026bdf2c29c22153ff6104017ab799f394
+# skip: [3497555050acb18bdc7511b73a019e6c6f03a7ce] updates Makefile.in
+git bisect skip 3497555050acb18bdc7511b73a019e6c6f03a7ce
+# skip: [8dab90cd9b5f23c859e83a64e6109a4bef6dd995] updates kernel routines
+git bisect skip 8dab90cd9b5f23c859e83a64e6109a4bef6dd995
+# skip: [5921d1fad20a1ee1b014f4becb0a65b1582ce2bb] updates time loop and writing seismograms
+git bisect skip 5921d1fad20a1ee1b014f4becb0a65b1582ce2bb
+# skip: [dd817b48be7f2427df4ecadf12a64a8d49249ba7] updates noise sources; updates reference solutions for regional_Greece_small example; fixes rotation arrays
+git bisect skip dd817b48be7f2427df4ecadf12a64a8d49249ba7
+# skip: [7d53c2a2ee095c3d0f603f12ad54f5706acb943a] updates stacey and sources routines
+git bisect skip 7d53c2a2ee095c3d0f603f12ad54f5706acb943a
+# skip: [5072c9d3d08281e1891a0077bcc4967602ad927a] removes obsolete file assemble_MPI_vector_block.f90
+git bisect skip 5072c9d3d08281e1891a0077bcc4967602ad927a
+# skip: [3aed5f44de8db2d89b151a1f57775d0dc37a6ded] adds modules and cuda routines
+git bisect skip 3aed5f44de8db2d89b151a1f57775d0dc37a6ded
+# skip: [a31309845c0697688f04e21a23c64f720363301c] bug fix in file unit id in combine_vol_data_vtk.f90; bug fix for default attenuation model in get_model_parameters.f90; renames USE_3D_ATTENUATION to USE_3D_ATTENUATION_ARRAYS and only uses ATTENUATION_3D flag to depict 3D attenuation models in mesher setup; adds stations to regional_Greece_small example and changes default model for faster meshing; slight change in duration and attenuation flags in global_s362ani_small example; increase NMAX trace length in UTILS/adjoint_sources/ examples
+git bisect skip a31309845c0697688f04e21a23c64f720363301c
+# skip: [4bdbac7f16beccc74fd7d3c73af55c00f63f2e2d] updates memory evaluation and source location routine; updates tabs and whitespaces
+git bisect skip 4bdbac7f16beccc74fd7d3c73af55c00f63f2e2d
+# skip: [8119c9023f508f4e8d48f03bc483c016147d9acb] merges solver_data_1.bin, solver_data_2.bin and array_dims.txt into solver_data.bin; re-calculates NSTEP and adds t0 initial time to reach full record length; bug fix in rotation for outer core Deville routine
+git bisect skip 8119c9023f508f4e8d48f03bc483c016147d9acb
+# skip: [70f1f5bf674c334388e1f2395ca1a94445b47c25] updates routines for attenuation handling: adds "ATTENUATION_NEW" flag in Par_file for switching between old/new version
+git bisect skip 70f1f5bf674c334388e1f2395ca1a94445b47c25
+# skip: [f485b93b6f01731c35a533f7720e600c972b27fa] updates cuda routines to be compatible with version 5 addressing; updates configuration files to work with --with-cuda=cuda5 option; adds visual_vtk routines; shortens some variable names
+git bisect skip f485b93b6f01731c35a533f7720e600c972b27fa
+# skip: [2437aeaaf2b392c859e8348abba299a120345a23] updates attenuation routines without Deville optimizations for efficiency purposes
+git bisect skip 2437aeaaf2b392c859e8348abba299a120345a23
+# skip: [d0ae1c581f850be200aa731404bfa08a9926dda3] Set the list of file to be ignored by git (for users using git-svn).   new file:   .gitignore
+git bisect skip d0ae1c581f850be200aa731404bfa08a9926dda3
+# skip: [47070d65d55b260b6a030a88912b4a2001464e67] adds setup_inner_outer.f90 and setup_MPI_interfaces.f90
+git bisect skip 47070d65d55b260b6a030a88912b4a2001464e67
+# skip: [d490db2f1022af95ae5b860e9aaf06d833cb160e] Allow the configuration to search for -ladiosf and -lmxml (required by adios) 	modified:   configure.ac
+git bisect skip d490db2f1022af95ae5b860e9aaf06d833cb160e
+# skip: [e0f173f9b6c0d7ad3a874f18230ec0a6c64e57f1] updates meshing routines; updates configuration files; adds EXAMPLE/global_s362ani_shakemovie
+git bisect skip e0f173f9b6c0d7ad3a874f18230ec0a6c64e57f1
+# skip: [0fe83aa0223d97c8f2ff3f4e3f924629a63b4770] Read and Broadcast the "ADIOS_ENABLED" flags from the Par_file 	modified:   src/shared/broadcast_compute_parameters.f90 	modified:   src/shared/read_parameter_file.f90
+git bisect skip 0fe83aa0223d97c8f2ff3f4e3f924629a63b4770
+# skip: [b6221ca037df72336660a28a60a5cc41b70a62da] updates mesher routines and create_regions_mesh() modules; adds initialize_cuda.cu file
+git bisect skip b6221ca037df72336660a28a60a5cc41b70a62da
+# skip: [6540512c704df8bcf3eed40c0171ad7410258bc5] bug fix in get_event_info() routine; updates compute_arrays_source() routine arguments
+git bisect skip 6540512c704df8bcf3eed40c0171ad7410258bc5
+# skip: [8efb5bce1dc71130fe962b9727f185948d049191] cleans up header file and mesher variables; separates OCEANS and TOPOGRAPHY
+git bisect skip 8efb5bce1dc71130fe962b9727f185948d049191
+# skip: [b04f025d1505898e8e286257a4cab4f973b6ab38] Declare and store the 'ADIOS_ENABLED' flags. 	modified:   src/specfem3D/specfem3D_par.F90
+git bisect skip b04f025d1505898e8e286257a4cab4f973b6ab38
+# skip: [d7b99f007f851044fa511786fd17450af8b4551e] updates module usage for models; avoids 3D moho stretching when no topography is used
+git bisect skip d7b99f007f851044fa511786fd17450af8b4551e
+# skip: [00683e8f9172d1ec972914ef839a0dde26b30713] updates reference solutions for regional_Greece_small/ and global_s362ani_small/ in EXAMPLES/; removes unneeded hprimewgll arrays for CUDA version
+git bisect skip 00683e8f9172d1ec972914ef839a0dde26b30713
+# skip: [563319c36d1ae2fc2c44f09d2f55b39cf627baf3] fixes Stacey boundary conditions bug by adding a C*deltat/2 contribution to the mass matrices on Stacey edges; updates routines for attenuation debugging
+git bisect skip 563319c36d1ae2fc2c44f09d2f55b39cf627baf3
+# skip: [7f6150efd8965f2b817ad072e1537aa1a24c9b96] fixes inner core coupling; fixes acceleration updates with rotation
+git bisect skip 7f6150efd8965f2b817ad072e1537aa1a24c9b96
+# skip: [b2e5388522e82caed958d311a23d236432c771ed] changes meshing order to setup mesh coloring; uses internal arrays for mpi buffers to avoid additional mesh file outputs
+git bisect skip b2e5388522e82caed958d311a23d236432c771ed
+# skip: [8a63ba6a86f1fff084f101b709c432335cbf8daf] updates ocean coupling; updates mesh coloring for attenuation arrays; adds flag in constants.h.in to use 3D attenuation by default
+git bisect skip 8a63ba6a86f1fff084f101b709c432335cbf8daf
+# skip: [5be1b80a570bcc3cf23e8f34bb8687bd77645163] fixes attenuation bug in cuda code by using 1st order Taylor expansion for epsilondev_loc variable
+git bisect skip 5be1b80a570bcc3cf23e8f34bb8687bd77645163
+# skip: [d82760375f3fa08da7b5b12b0dc91771749a5891] updates module usage for attenuation models; updates coupling terms; adds flush statement for main file output
+git bisect skip d82760375f3fa08da7b5b12b0dc91771749a5891
+# skip: [e820918a7d4437f93baf4609ed0b07f3cb0b227f] updates routines for attenuation debugging; 1st order Taylor expansion used for epsilon_dev_loc variable
+git bisect skip e820918a7d4437f93baf4609ed0b07f3cb0b227f
+# skip: [65d7e8728a5a20780e63f0259de3544e3e079c68] adds mesh coloring; uses modules for reference models
+git bisect skip 65d7e8728a5a20780e63f0259de3544e3e079c68
+# skip: [860c38c06b92c00ef61e3c201955cdd0bc109afa] updates mpi interfaces; adds support for nproc_xi==1
+git bisect skip 860c38c06b92c00ef61e3c201955cdd0bc109afa
+# skip: [6c40f88249326e8e73fe130d74e2122ceefdcde7] updates routines for central cube debugging
+git bisect skip 6c40f88249326e8e73fe130d74e2122ceefdcde7
+# only skipped commits left to test
+# possible first bad commit: [d1de5ba7ee2da8b5bdcfaca1f561755e8a1f6be6] updates undoatt routines, seismogram outputs and force vectorization routines
+# possible first bad commit: [c99b71311d726830881ba765a6e24d59a3ef9420] adds LDDRK time scheme routines; adds files compute_element_att_memory.F90, update_displacement_LDDRK.f90, iterate_time_undoatt.F90 and deletes create_central_cube_buffers.f90 in solver
+# possible first bad commit: [bf33248d2ee5d8f7f79f41c3fe641c8585718979] updates movie surface routines in solver, and auxiliary programs create_movie_AVS_DX and create_movie_GMT_global to read in new moviedata format
+# possible first bad commit: [464ea9ca5acdf7fb81b07423ac6ebd9b7a542c67] updates locate receivers routine; updates model ak135 modifications; removes some unused variables from save_header_file output
+# possible first bad commit: [c081203e6685aa164c1b2264381758d7950cac5d] separates forward and backward routines; renames endings to read_mesh_databases.F90 and compute_forces_outer_core_Dev.F90 to use preprocessor directives; adds regular kernel routines
+# possible first bad commit: [58e24e108285cb9a96d851e2cda7d31608cbcaa5] added a sentence about asking for exclusive use of the compute nodes
+# possible first bad commit: [8dbcb1c2575fc13e42b89e3ffb1a09be9242d1d5] adds new files compute_element_strain.F90 and update_displacement_Newmark.f90; prepares some more undoatt routines; updates restart file handling for restarting/checkpointing capabilities
+# possible first bad commit: [25642247a5669457a835447fa4e518f32791ee80] removes obsolete files in src/specfem3D/ assemble_MPI_central_cube_block.f90,read_arrays_buffers_solver.f90,assemble_MPI_scalar_block.f90,assemble_MPI_central_cube.f90,assemble_MPI_vector_block.f90,fix_non_blocking_flags.f90; adds file parallel.f90 for mpi wrappers; renames acoustic and elastic calling routine files; renames check_simulation_stability to check_stability for compliance with SPECFEM3D_Cartesian; adds mass matrix arrays for rotation correction
+# possible first bad commit: [b91447a14e7eeccee23fed6e43f8ba245897babe] updates Makefiles and rules for proper compilation; adds modules for shared parameters; adds adios stubs
+# possible first bad commit: [edb3429fa698e8488d94ea09839e969bf3057557] merges commit 22724 to SUNFLOWER branch; updates model_crustmaps routines
+# possible first bad commit: [a6bc9907f43b1a6a5bb1f231bc363eeb5e587d99] made "-mcmodel=medium -shared-intel" optional for Intel ifort, since some releases of Intel ifort v12 create codes that are not correct when this option is used (that problem comes from the compiler, not from our code; it has been fixed in Intel ifort v13, and some releases of v12 are also OK)
+# possible first bad commit: [fa9d0105eefbce1633df93234960bb151ccf4256] fixed a small bug (missing subroutine argument) in sac2asc.c, added missing header files and simplified the Makefile
+# possible first bad commit: [7e4f69dcac96979aafe3d12b0c380ccc32c6fcd9] switched from 90% or 92% to 85% because the system apparently needs more than 8% of the memory of a node for itself (at least on some machines)
+# possible first bad commit: [36ddf747b6b6d17d0292bb603798613d6f7b516d] merged changes made in the trunk to fix small bugs mentioned by Min Chen into the branch
+# possible first bad commit: [af19f2a0cefdbcc9f00d958c576c63de8fbb209b] copied compute_optimized_dumping_undo_att.f90 from trunk to branch
+# possible first bad commit: [9680add5139c0e6e1671ae9c963bbc0d22f17f7e] added replace_use_mpi_with_include_mpif_dot_h.pl
+# possible first bad commit: [a3e804d4d5c770a42e39f2296f10baddeddb9876] made the position of "use mpi" suitable for automatic replacement with "include mpif.h" based on a script
+# possible first bad commit: [cf98b117056f1f0227a3bd62f9155729f7cf02be] added all the executables to the default Makefile (two were missing)
+# possible first bad commit: [ca198d38562f3a6f51069844f05afdc2e2a47f59] added PGI vectorization directives
+# possible first bad commit: [01fd519531bc3244ff18b6d0bac2bee0e3f9fd62] done with easy merges in src/specfem3D
+# possible first bad commit: [13e8f72252eab70b30e91059cadb81295262bd61] done with easy merges in src/shared
+# possible first bad commit: [1c521e5b0c3c20fc2403da9e80b1a1ce58280f74] done with easy merges in src/meshfem3D
+# possible first bad commit: [9e328d0f93c9154dbf7745ff9bd947194c0c7479] replaced all include 'mpif.h' with use mpi
+# possible first bad commit: [078961c59a9a11b1d069a65a7ea70113d4d60262] done with all the easy merges in src/specfem3D
+# possible first bad commit: [e4e733c472b0f34cf13b1e9ecdfb6891d745e3ee] done with all the easy merges in src/shared
+# possible first bad commit: [8d90cbdf91064137f11741d350b0ead647e6330d] done with all the easy merges in src/meshfem3D
+# possible first bad commit: [80aba9ea743c9a60bb5eaf538957169f646c3511] started to merge with "meld"
+# possible first bad commit: [b8a6a1d456ae34286564afce189df4baf472e9c7] performed obvious merges from the trunk to the GPU branch
+# possible first bad commit: [1ee3574502c3dc50cc4de3935ada156caa74cda0] renamed some files to merge with "meld"
+# possible first bad commit: [01d96a45294a9d53f7472a28590d70e841ceaa25] renamed compute_kernels.f90 to compute_kernels.F90
+# possible first bad commit: [55fe78796397d660c55611812cad5bbf977ca768] fixed a typo
+# possible first bad commit: [2b4447ce46bc24467c6ce6ade7a51803da7346b8] deleted figures/Logo_INRIA.jpg
+# possible first bad commit: [342ab5e50578e84d26bd1263cb58e2a855cf474b] renamed src/shared/broadcast_compute_parameters.f90 to src/shared/broadcast_computed_parameters.f90
+# possible first bad commit: [6157f63a7ff55ae4473cb795acd104409b2de636] moved all the part*.f90 files to src/specfem3D
+# possible first bad commit: [0bbdfae0b3b028b09af2ffdc95a39df6ffe39804] fixed a small bug related to the "DEBUG" flag that I had introduced when merging some simple changes from the GPU branch back into the trunk
+# possible first bad commit: [50a312d964e91b4845428deb645e7aef3da50f5a] re-added branches/SPECFEM3D_GLOBE_SUNFLOWER/this_branch_was_created_from_revision_r19620_of_the_trunk.txt
+# possible first bad commit: [126c880aa337d82fd7dcecb3f210025212952e57] fixed all compilation warnings that resulted from the changes I made in the last two days (merging some straightforward modifications and small bug fixes from the GPU version back into the trunk)
+# possible first bad commit: [8c7adb16b1b129f60f0510bd1b7899a3b781c371] done making all the easy merges in src/specfem3D; also got rid of all the ADIOS files that I had put in the trunk
+# possible first bad commit: [dbc696830398532f18b65ed83419060c60ba6b9d] more easy merges in src/specfem3D
+# possible first bad commit: [ebc52cba0360f3b489f8ecac44e542245268b635] added doc/an_excellent_code_branch_comparison_is_meld.txt
+# possible first bad commit: [b9136beb08b841c04fa2bcf1942e7e92a112dc5f] made a few easy merges in src/specfem3D
+# possible first bad commit: [f5f546dfe7ad625a14e7fd0ae4112f388cf9b23e] done with all the easy merges in "src/shared"
+# possible first bad commit: [258b2c8f4a670ef63a861c6b76f09cd06f9f2cf3] done merging all easy modifications in "src/meshfem3D"
+# possible first bad commit: [f962846ff3d40dc6a1eee928dfe9c2ae2fef6c7e] done merging all the easy changes in src/auxiliaries
+# possible first bad commit: [ba237cfbf859f2975f411fdc0e8506118c1e1dd2] more obvious merges
+# possible first bad commit: [a09f432faca2503d0513239214e124e630078016] more obvious merges
+# possible first bad commit: [a22df103f756d1b554abdff66edccf5cd5628bf4] more obvious merges
+# possible first bad commit: [0bfe775baf05579746fc66256afcb091093b5150] merged more obvious things
+# possible first bad commit: [c85a8e24b6929051a82a4db6dbcca85df7bee585] removed white spaces, changed end if to endif, changed end do to enddo, change elseif to else if
+# possible first bad commit: [60923b576506e3336c5f237a97a848dc74c6a083] started to do a few obvious merges
+# possible first bad commit: [ef164d6dd7aa6c932b525087bc9fa373768c06f3] done merging new files in "specfem3D"
+# possible first bad commit: [a3fc7e51de588f742ef1ab24a5e62ba4787052f4] done adding new files in "meshfem3D"
+# possible first bad commit: [86d703b31a4bc0931a659a2bd1d535841661f6e0] done merging new files in "create_header_file"
+# possible first bad commit: [465882fb645d97854edb809f65470023ece06fcf] done merging new files in "shared"
+# possible first bad commit: [6fb6d700516ebca7517592fa390e3ed00271d8e8] svn added some files
+# possible first bad commit: [3071c084b663c27428f11d003d68f2150aee10c1] more merging
+# possible first bad commit: [63e25dc5b6c577dcdcc20487ab0c66b35a891d4f] started to merge using "meld"
+# possible first bad commit: [cc88b93e2978975a59e2242cff807268fcb6fa7c] merged or copied all the files from the root of the trunk
+# possible first bad commit: [9bbbfe5ec6e12d48f6c3eb1dfa0a46bf1e6f490f] updated "EXAMPLES" from the trunk; will need to re-add some GPU parameters to all the Par_files later
+# possible first bad commit: [c520fd51b53f789642a96af2f36496b4a04c303b] merged "utils" from the trunk
+# possible first bad commit: [258cf744239d1eaf67823857cd089c873fe5ad98] updated utils/update_headers_change_word_f90.pl
+# possible first bad commit: [569adb2fb1a15813b69b5162aa77a76d7ec2e16c] renamed UTILS to utils
+# possible first bad commit: [1f12e36619cf684685b35f2d2a21ad15ee445e24] merged "doc" from the trunk
+# possible first bad commit: [62566b0679d995ba140c7a628bd69758f02f169e] added SPECFEM3D_GLOBE_SUNFLOWER/this_branch_was_created_from_revision_r19620_of_the_trunk.txt
+# possible first bad commit: [9c2ff5c78b2e6c299eaa949e4da46196757fa011] removed SPECFEM3D_GLOBE_SUNFLOWER/this_branch_was_created_from_revision_r21488_of_the_SUNFLOWER_branch.txt
+# possible first bad commit: [5edb7790c20bd82e4c5f05eb102a10e3931d1fb3] merged branches/SUNFLOWER_ADIOS into branches/SPECFEM3D_GLOBE_SUNFLOWER
+# possible first bad commit: [b19c7b84b3d86280c96d094a94d178f3c69bcc22] added branches/SUNFLOWER_ADIOS/this_branch_was_created_from_revision_r21488_of_the_SUNFLOWER_branch.txt
+# possible first bad commit: [f8b6ff5700912e99da1f064c951b4960f1846140] arrays_solver written in a single adios file modified:   ../meshfem3D/save_arrays_solver_adios.F90
+# possible first bad commit: [0052a04dad5fc645ec4b674be586394170fa5469] Multiple selection bounding box. One perform read for: 	modified:   ../specfem3D/read_arrays_solver_adios.f90
+# possible first bad commit: [77619664d885047f2538ce99f26f245b82d15614] write_AVS_DX_* are outputing a single ADIOS file per region.
+# possible first bad commit: [7c2e18f5c35f708e97481c14133b3cbbbcbd67f4] ADIOS used to write global faces data for AVS/DX.
+# possible first bad commit: [e77d7c74ffa9cfccca868e53c99ce09a8e587360] Flag added for using ADIOS for AVs/DX data.
+# possible first bad commit: [92945118740e74d6f17bf6789dac36abfc2e90a5] ADIOS for points and elements AVS/DX Data.
+# possible first bad commit: [501d2899d202259c120d69195a7f94c29bbabb1d] Added some Doxygen comments in the files using ADIOS.
+# possible first bad commit: [907f58748608c105845dcc2feae27f0397b8ebee] stacey mesh files saved (meshfem3d) and read (specfem3d) with ADIOS 	modified:   ../../src/meshfem3D/Makefile.in 	modified:   ../../src/meshfem3D/create_regions_mesh.f90 	modified:   ../../src/meshfem3D/get_absorb.f90 	new file:   ../../src/meshfem3D/get_absorb_adios.f90 	modified:   ../../src/meshfem3D/save_arrays_solver_adios.F90 	modified:   ../../src/specfem3D/read_mesh_databases.f90 	modified:   ../../src/specfem3D/read_mesh_databases_adios.f90 	modified:   ../../src/specfem3D/specfem3D.F90
+# possible first bad commit: [d92c54d32315a7849381c79f3cbc5596407c3bb7] ADIOS_FOR_SOLVER_MESHFILES flag added. solver meshfiles are saved with adios with the prerequisite that arrays solvers are written with ADIOS as well.
+# possible first bad commit: [13db4ebf65989de76a0c7c64de8499730a1d1eb4] attenuation and boundary databases written with ADIOS.
+# possible first bad commit: [2fd27b2df31133e964d62453bc157b5aa49f3f09] procxxx_regy_solver_data.bin files saved and read with ADIOS as regy_solver_data.bp. New files added to Makefile.in. Modifications for meshfem3d/ and specfem3d/.
+# possible first bad commit: [dcb526d27adc261ec7faa1ea3dca23423642a86b] MPI arrays are written as adios files in the mesher and read as such in the solver. New flags to allow the user to choose wether he wants regular or adios files. Common routines moved in the src/shared/ directory.
+# possible first bad commit: [2bc5c29346542d320d0bee0569e6e14bd4fe471b] Ability to read forward arrays for adjoint simulations. No conditional groupsize definition for saving forward arrays otherwise it messes with the buffersize. 	modified:   ../../src/specfem3D/read_forward_arrays.f90 	modified:   ../../src/specfem3D/read_forward_arrays_adios.F90 	modified:   ../../src/specfem3D/save_forward_arrays_adios.F90
+# possible first bad commit: [3afef0f25fd98971a128026fde1e4d51b02e16e5] Read the ADIOS_FOR_FORWARD_ARRAYS flag and branch in forward function to call adios routines.
+# possible first bad commit: [103869a2cbf8b1bb2a77313c9b41d6ab0d2bddb4] Forward arrays (intermediate and finals) are written with ADIOS. intermediate forward arrays are read with adios. ADIOS_FOR_FORWARD_ARRAYS flags addded to Par_file. 	new file:   ../../src/specfem3D/read_forward_arrays_adios.F90 	new file:   ../../src/specfem3D/save_forward_arrays_adios.F90 	modified:   ../../DATA/Par_file 	modified:   DATA/Par_file 	modified:   ../../src/shared/broadcast_compute_parameters.f90 	modified:   ../../src/shared/read_parameter_file.f90 	modified:   ../../src/specfem3D/Makefile.in 	modified:   ../../src/specfem3D/adios_helpers.f90 	modified:   ../../src/specfem3D/initialize_simulation.f90 	modified:   ../../src/specfem3D/read_forward_arrays.f90 	modified:   ../../src/specfem3D/save_forward_arrays.f90 	modified:   ../../src/specfem3D/specfem3D_par.F90 	modified:   ../../src/specfem3D/write_specfem_adios_header.F90
+# possible first bad commit: [62e9fc156cce63e12fc79a60714a2904b7aae608] routine to write the adios header factorized, use config.fh to save configuration files and program name+version 	modified:   configure 	modified:   setup/config.h.in 	modified:   src/specfem3D/write_specfem_adios_header.F90
+# possible first bad commit: [78fc8778e02c4b49a9f98f0bb9f5885933195eeb] Generate a macro to config.h to store configuration flags. Convert config.h to config.fh to insert defines in F90 files 	modified:   configure.ac
+# possible first bad commit: [dd9f43e2c413d6180e9633e28ebca9b4dab817f0] Configuration file for doxygen or doxywizard. Help to produce nice auto-documentation 	new file:   doc/Doxyfile
+# possible first bad commit: [66686eb10e6fcd2aab5cde728a8e8e5ec723d37f] Subroutine to write ADIOS header splitted and file doxygen-ated 	modified:   src/specfem3D/write_specfem_adios_header.F90
+# possible first bad commit: [ebeb856a358c98f95bcab947a8d98924a0db9bc2] Routine that write the adios header renamed and a little bit factorized 	modified:   flags.guess 	modified:   src/specfem3D/Makefile.in 	modified:   src/specfem3D/initialize_simulation.f90 	renamed:    src/specfem3D/write_par_header_ADIOS.F90 -> src/specfem3D/write_specfem_adios_header.F90
+# possible first bad commit: [070e501d4704f0740cc85cd16e75b7d65d0b339b] Do not track vi garbagge files 	modified:   .gitignore
+# possible first bad commit: [3ed361661ed3abf275e04a1a60dc9ffcf341826a] Formatting and comments added to write_par_header_ADIOS 	modified:   src/specfem3D/write_par_header_ADIOS.F90
+# possible first bad commit: [aa579d41df6a74732eff0e00e4dc5abd0712dcff] Bug corrected. "\" was missing before adios_helpers.f90 in the file list. 	modified:   src/specfem3D/Makefile.in
+# possible first bad commit: [f5fd7f549724abc1e5c049ca0ad80af5b67ecea4] Helpers for easier definitions of ADIOS variables moved on a separate file. These helpers are called by write_par_header_ADIOS (need to be cleaned). 	new file:   src/specfem3D/adios_helpers.f90 	modified:   src/specfem3D/Makefile.in 	modified:   src/specfem3D/write_par_header_ADIOS.F90
+# possible first bad commit: [49a965c9899170773e417826263f5cba1f4b23b0] Remove the autogeneration of adios includes from the xml configuration file 	modified:   Makefile.in
+# possible first bad commit: [2c141c0f6b1f4418b7e7487e3c6a2069f6f1934b] Do not use xml file anymore to define variable. Do not use the autogenerated adios code as well. 	modified:   ../../src/specfem3D/write_par_header_ADIOS.F90
+# possible first bad commit: [9b5b8d65bafabe7af1e788dd2cfdc9b3568a69ee] Change adios_init to call the non xml API. 	modified:   ../../src/specfem3D/adios_manager.F90
+# possible first bad commit: [974cfaeeaf33f214bf0e9e908852ee5e62f52146] Not sure why the configure file is in the svn repo. 	modified:   configure
+# possible first bad commit: [a0a06dae978bda78cd883b2c3ea42d407c1a91ad] update in .gitignore in order to avoid 'git status' to complain 	modified:   .gitignore
+# possible first bad commit: [c0e45632bf44d741429bc072098e8e5cf7182991] Auto-generate the ADIOS stubs from the configuration file into src/specfem3D Calls ADIOS gpp.py script to do so. 	modified:   Makefile.in
+# possible first bad commit: [23efd88aa23c048f4094e7f184f9d9c78d454871] Makefile.in for specfem3D take ADIOS-dependant files into account 	modified:   src/specfem3D/Makefile.in
+# possible first bad commit: [0552e83f91451d559fd43b7ea2de90f36054ecf5] Variables to be written in the header of the ADIOS output file are store in par_header.xml. This xml file is used in write_par_header_ADIOS.F90. 	new file:   setup/adios_xml_files/par_header.xml 	new file:   src/specfem3D/write_par_header_ADIOS.F90
+# possible first bad commit: [379d4f5236cf0eac40f98a920dfd38651b8df0c0] Routines to initialize and finalize ADIOS. Initialize_simulation also calls the routines to read and broadcast 'ADIOS_ENABLED' 	new file:   src/specfem3D/adios_manager.F90 	modified:   src/specfem3D/finalize_simulation.f90 	modified:   src/specfem3D/initialize_simulation.f90
+# possible first bad commit: [b04f025d1505898e8e286257a4cab4f973b6ab38] Declare and store the 'ADIOS_ENABLED' flags. 	modified:   src/specfem3D/specfem3D_par.F90
+# possible first bad commit: [0fe83aa0223d97c8f2ff3f4e3f924629a63b4770] Read and Broadcast the "ADIOS_ENABLED" flags from the Par_file 	modified:   src/shared/broadcast_compute_parameters.f90 	modified:   src/shared/read_parameter_file.f90
+# possible first bad commit: [d490db2f1022af95ae5b860e9aaf06d833cb160e] Allow the configuration to search for -ladiosf and -lmxml (required by adios) 	modified:   configure.ac
+# possible first bad commit: [d0ae1c581f850be200aa731404bfa08a9926dda3] Set the list of file to be ignored by git (for users using git-svn).   new file:   .gitignore
+# possible first bad commit: [c49f96a6b8f69154f6859fce5293bf5c180d113f] bug fix for anisotropic/transverse isotropic kernels in cuda routines; update in combine_vol_data_vtk for file output creation
+# possible first bad commit: [f485b93b6f01731c35a533f7720e600c972b27fa] updates cuda routines to be compatible with version 5 addressing; updates configuration files to work with --with-cuda=cuda5 option; adds visual_vtk routines; shortens some variable names
+# possible first bad commit: [a31309845c0697688f04e21a23c64f720363301c] bug fix in file unit id in combine_vol_data_vtk.f90; bug fix for default attenuation model in get_model_parameters.f90; renames USE_3D_ATTENUATION to USE_3D_ATTENUATION_ARRAYS and only uses ATTENUATION_3D flag to depict 3D attenuation models in mesher setup; adds stations to regional_Greece_small example and changes default model for faster meshing; slight change in duration and attenuation flags in global_s362ani_small example; increase NMAX trace length in UTILS/adjoint_sources/ examples
+# possible first bad commit: [8119c9023f508f4e8d48f03bc483c016147d9acb] merges solver_data_1.bin, solver_data_2.bin and array_dims.txt into solver_data.bin; re-calculates NSTEP and adds t0 initial time to reach full record length; bug fix in rotation for outer core Deville routine
+# possible first bad commit: [6540512c704df8bcf3eed40c0171ad7410258bc5] bug fix in get_event_info() routine; updates compute_arrays_source() routine arguments
+# possible first bad commit: [00683e8f9172d1ec972914ef839a0dde26b30713] updates reference solutions for regional_Greece_small/ and global_s362ani_small/ in EXAMPLES/; removes unneeded hprimewgll arrays for CUDA version
+# possible first bad commit: [7f6150efd8965f2b817ad072e1537aa1a24c9b96] fixes inner core coupling; fixes acceleration updates with rotation
+# possible first bad commit: [8a63ba6a86f1fff084f101b709c432335cbf8daf] updates ocean coupling; updates mesh coloring for attenuation arrays; adds flag in constants.h.in to use 3D attenuation by default
+# possible first bad commit: [d82760375f3fa08da7b5b12b0dc91771749a5891] updates module usage for attenuation models; updates coupling terms; adds flush statement for main file output
+# possible first bad commit: [65d7e8728a5a20780e63f0259de3544e3e079c68] adds mesh coloring; uses modules for reference models
+# possible first bad commit: [b2e5388522e82caed958d311a23d236432c771ed] changes meshing order to setup mesh coloring; uses internal arrays for mpi buffers to avoid additional mesh file outputs
+# possible first bad commit: [d7b99f007f851044fa511786fd17450af8b4551e] updates module usage for models; avoids 3D moho stretching when no topography is used
+# possible first bad commit: [8efb5bce1dc71130fe962b9727f185948d049191] cleans up header file and mesher variables; separates OCEANS and TOPOGRAPHY
+# possible first bad commit: [6e1fe12749764b55a1494b36716d0a87c927fcd4] updates mesh ordering for setting up MPI interfaces
+# possible first bad commit: [e9478bc1488e2c77ecb604631fc9d9575b3fce21] updates texture usage for cuda routines
+# possible first bad commit: [33b8c2451f7da4b0d9ea754e7666a06833f653af] updates cuda routines to account for 1D and 3D attenuation arrays
+# possible first bad commit: [e07d81d618f08d644c21b6b16a8284bce17b0709] sets automatically the size of attenuation arrays according to the model defined in Par_file
+# possible first bad commit: [b6221ca037df72336660a28a60a5cc41b70a62da] updates mesher routines and create_regions_mesh() modules; adds initialize_cuda.cu file
+# possible first bad commit: [e0f173f9b6c0d7ad3a874f18230ec0a6c64e57f1] updates meshing routines; updates configuration files; adds EXAMPLE/global_s362ani_shakemovie
+# possible first bad commit: [47070d65d55b260b6a030a88912b4a2001464e67] adds setup_inner_outer.f90 and setup_MPI_interfaces.f90
+# possible first bad commit: [a834c862f9907af87680a75fdf7beba4e9438b83] updates mesher routines; updates Par_files in examples
+# possible first bad commit: [2437aeaaf2b392c859e8348abba299a120345a23] updates attenuation routines without Deville optimizations for efficiency purposes
+# possible first bad commit: [563319c36d1ae2fc2c44f09d2f55b39cf627baf3] fixes Stacey boundary conditions bug by adding a C*deltat/2 contribution to the mass matrices on Stacey edges; updates routines for attenuation debugging
+# possible first bad commit: [70f1f5bf674c334388e1f2395ca1a94445b47c25] updates routines for attenuation handling: adds "ATTENUATION_NEW" flag in Par_file for switching between old/new version
+# possible first bad commit: [4bdbac7f16beccc74fd7d3c73af55c00f63f2e2d] updates memory evaluation and source location routine; updates tabs and whitespaces
+# possible first bad commit: [e820918a7d4437f93baf4609ed0b07f3cb0b227f] updates routines for attenuation debugging; 1st order Taylor expansion used for epsilon_dev_loc variable
+# possible first bad commit: [a84cc0a6fa125d431e0b5e6c6279221bb513d1a9] puts mpi interface detection to mesher; removes unused routines
+# possible first bad commit: [5be1b80a570bcc3cf23e8f34bb8687bd77645163] fixes attenuation bug in cuda code by using 1st order Taylor expansion for epsilondev_loc variable
+# possible first bad commit: [860c38c06b92c00ef61e3c201955cdd0bc109afa] updates mpi interfaces; adds support for nproc_xi==1
+# possible first bad commit: [655cd920e5cddd81b0c81e9ddaaa3c574f2e189b] adds another local path parameter to separate mesh files from temporary storage file; updates locate receivers routine; updates read topo file; updates check norm routines on cuda
+# possible first bad commit: [6c40f88249326e8e73fe130d74e2122ceefdcde7] updates routines for central cube debugging
+# possible first bad commit: [3fef583ebeb6fbfd0cf390ab4d3ea205d5fbd96d] updates iterate_time() routine
+# possible first bad commit: [87b7e662a43d337584329063ee881e3c9d00881f] includes updates ensuring forward & adjoint simulations run ok for regional_Greece_small example with all options switched on
+# possible first bad commit: [555f9ce80cbc8dde8c50e0ebad2876e9b5575d08] updates coupling routines
+# possible first bad commit: [a8378b7be9ae309427a4c4f57e07effd136ca89c] fixes the previous commit in which some git messages remained
+# possible first bad commit: [0b86ea026bdf2c29c22153ff6104017ab799f394] adds cuda routines for coupling inner_core/outer_core, outer_core/crust_mantle and crust_mantle/ocean
+# possible first bad commit: [3497555050acb18bdc7511b73a019e6c6f03a7ce] updates Makefile.in
+# possible first bad commit: [8dab90cd9b5f23c859e83a64e6109a4bef6dd995] updates kernel routines
+# possible first bad commit: [5921d1fad20a1ee1b014f4becb0a65b1582ce2bb] updates time loop and writing seismograms
+# possible first bad commit: [dd817b48be7f2427df4ecadf12a64a8d49249ba7] updates noise sources; updates reference solutions for regional_Greece_small example; fixes rotation arrays
+# possible first bad commit: [7d53c2a2ee095c3d0f603f12ad54f5706acb943a] updates stacey and sources routines
+# possible first bad commit: [5072c9d3d08281e1891a0077bcc4967602ad927a] removes obsolete file assemble_MPI_vector_block.f90
+# possible first bad commit: [3aed5f44de8db2d89b151a1f57775d0dc37a6ded] adds modules and cuda routines
