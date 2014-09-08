@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# Just before first commit on sunflower branch
+START=c97fe608732836f956043f41d3e8085c474d4ffe
+# Last commit on sunflower branch
+END=73690a718f4b489142e07aaf943092b86f8f5e43
+
+git rev-list ${START}..${END} | while read rev; do
+	echo $rev
+	echo $rev >> ../ak135-bug/make-log
+
+	git checkout $rev
+	mkdir -p DATA
+	cp ../ak135-bug/Par_file DATA/
+	cp ../ak135-bug/STATIONS DATA/
+	cp ../ak135-bug/CMTSOLUTION DATA/
+
+	if ! git merge-base --is-ancestor 464ea9ca5acdf7fb81b07423ac6ebd9b7a542c67 $rev; then
+		echo 'Old AK135'
+		sed -i 's/1D_ak135f_no_mud/1D_ak135/g' DATA/Par_file
+	fi
+
+	if ! ./configure &> /dev/null; then
+		echo 'CONF FAIL'
+		echo $rev >> ../ak135-bug/conf-fail
+
+	elif ! make mesh spec &>> ../ak135-bug/make-log; then
+		echo 'MAKE FAIL'
+		echo $rev >> ../ak135-bug/make-fail
+
+	else
+		echo 'OKAY'
+		echo $rev >> ../ak135-bug/okay
+	fi
+
+	make clean &> /dev/null || true
+	git clean -f -x &> /dev/null
+done
+
