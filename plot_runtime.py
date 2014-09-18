@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from __future__ import print_function
+from __future__ import (division, print_function)
 
 from datetime import datetime
 import glob
@@ -14,7 +14,7 @@ import matplotlib.dates as mdates
 
 COMPILERS = ['ifort', 'gfortran', 'xlf', 'xlf_strict']
 NEX = [96, 144, 192, 240]
-MARKERS = 'oxv+'
+COLOURS = 'bgrc'
 if 'scinet' in platform.node() or 'gpc' in platform.node():
     BASE = os.path.expanduser('~/specfem3d_globe')
 else:
@@ -23,7 +23,8 @@ else:
 runtimes = {}
 dtype = np.dtype([('date', 'f4'),
                   ('runtime', 'f4'),
-                  ('steps', 'f4'),
+                  ('steps', 'i4'),
+                  ('total', 'i4'),
                   ('rev', 'S7')])
 
 for compiler in COMPILERS:
@@ -69,9 +70,12 @@ for compiler in COMPILERS:
 
             if complete != total:
                 print('WARNING: %s is incomplete!' % (dir, ))
+
+            if complete <= 5:
+                print('WARNING: %s has too few time steps to be useful!' % (dir, ))
                 continue
 
-            data += [(mdates.date2num(date), time, complete, rev)]
+            data += [(mdates.date2num(date), time, complete, total, rev)]
 
         runtimes['%s%d' % (compiler, i + 1)] = np.array(sorted(data),
                                                         dtype=dtype)
@@ -82,8 +86,10 @@ for res in range(4):
         runtime = runtimes['%s%d' % (compiler, res + 1)]
         x = runtime['date']
         y = runtime['runtime'] / runtime['steps']
-        ax.plot(x, y,
-                marker=MARKERS[j], label=compiler)
+        ok = runtime['steps'] == runtime['total']
+        ax.plot(x, y, c=COLOURS[j], label=compiler)
+        ax.scatter(x[ok], y[ok], c=COLOURS[j], marker='o')
+        ax.scatter(x[~ok], y[~ok], c=COLOURS[j], marker='x')
 
     locator = mdates.AutoDateLocator()
     formatter = mdates.AutoDateFormatter(locator)
