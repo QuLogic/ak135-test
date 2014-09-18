@@ -1,0 +1,20 @@
+ Time step #         5000
+ Time:    15.580167      minutes
+
+ Max norm displacement vector U in solid in all slices (m) =   0.20231262    
+ Max non-dimensional potential Ufluid in fluid in all slices =   8.41302007E-15
+
+ Elapsed time in seconds =    339.28354096412659     
+ Elapsed time in hh:mm:ss =    0 h 05 m 39 s
+ Mean elapsed time per time step in seconds =   6.78567081928253130E-002
+
+ Time steps done =         5000  out of        19000
+ Time steps remaining =        14000
+ Estimated remaining time in seconds =    949.99391469955435     
+ Estimated remaining time in hh:mm:ss =    0 h 15 m 49 s
+
+ Estimated total run time in seconds =    1289.2774556636809     
+ Estimated total run time in hh:mm:ss =    0 h 21 m 29 s
+ We have done    26.315790     % of that
+
+ The run will finish approximately on (in local time): Wed Sep 03, 2014 18:13
