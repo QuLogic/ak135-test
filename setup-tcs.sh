@@ -18,7 +18,7 @@ OLD_CONF="$4"
 NEX=( [1]=96 [2]=144 [3]=192 [4]=240 )
 
 # Test with xlf
-for i in {1..2}; do
+for i in {1..4}; do
 	DIR=$SCRATCH/test_${XLF}${i}_${SHORT}
 	mkdir -p $DIR
 	(
@@ -39,7 +39,7 @@ done
 
 wait
 
-for i in {1..2}; do
+for i in {1..4}; do
 	DIR=$SCRATCH/test_${XLF}${i}_${SHORT}
 	mkdir -p $DIR/OUTPUT_FILES
 	mkdir -p $DIR/DATABASES_MPI

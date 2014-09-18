@@ -85,8 +85,8 @@ function cleanup() {
 trap cleanup EXIT
 
 MAIN=$SCRATCH/ak135-bug/
-#NEX=( [1]=96 [2]=144 [3]=192 [4]=240 )
-NEX=( [1]=96 [2]=144 )
+NEX=( [1]=96 [2]=144 [3]=192 [4]=240 )
+#NEX=( [1]=96 [2]=144 )
 
 mkdir -p $MAIN/$SHORT
 
@@ -94,10 +94,10 @@ mkdir -p $MAIN/$SHORT
 if [ "$NO_CONF" != "yes" ]; then
 
 # Test with Intel and gfortran
-#parallel --gnu --no-notice --xapply --results $MAIN/$SHORT --halt 2 \
-#	$MAIN/setup-gpc.sh ::: ifort ifort ifort ifort gfortran gfortran gfortran gfortran ::: {1..4} ::: ${NEX[*]} ::: $SHORT ::: $OLD_AK135 ::: $OLD_CONF
 parallel --gnu --no-notice --xapply --results $MAIN/$SHORT --halt 2 \
-	$MAIN/setup-gpc.sh ::: ifort ifort gfortran gfortran ::: 1 2 ::: ${NEX[*]} ::: $SHORT ::: $OLD_AK135 ::: $OLD_CONF
+	$MAIN/setup-gpc.sh ::: ifort ifort ifort ifort gfortran gfortran gfortran gfortran ::: {1..4} ::: ${NEX[*]} ::: $SHORT ::: $OLD_AK135 ::: $OLD_CONF
+#parallel --gnu --no-notice --xapply --results $MAIN/$SHORT --halt 2 \
+#	$MAIN/setup-gpc.sh ::: ifort ifort gfortran gfortran ::: 1 2 ::: ${NEX[*]} ::: $SHORT ::: $OLD_AK135 ::: $OLD_CONF
 
 
 # Test with xlf
@@ -113,13 +113,13 @@ fi
 
 
 # Compile everything
-#parallel --gnu --no-notice --xapply --results $MAIN/$SHORT --halt 2 \
-#	$MAIN/compile.sh ::: \
-#	ifort ifort ifort ifort gfortran gfortran gfortran gfortran xlf xlf xlf xlf xlf_strict xlf_strict xlf_strict xlf_strict ::: \
-#	{1..4} ::: \
-#	$SHORT
 parallel --gnu --no-notice --xapply --results $MAIN/$SHORT --halt 2 \
 	$MAIN/compile.sh ::: \
-	ifort ifort gfortran gfortran xlf xlf xlf_strict xlf_strict ::: \
-	1 2 ::: \
+	ifort ifort ifort ifort gfortran gfortran gfortran gfortran xlf xlf xlf xlf xlf_strict xlf_strict xlf_strict xlf_strict ::: \
+	{1..4} ::: \
 	$SHORT
+#parallel --gnu --no-notice --xapply --results $MAIN/$SHORT --halt 2 \
+#	$MAIN/compile.sh ::: \
+#	ifort ifort gfortran gfortran xlf xlf xlf_strict xlf_strict ::: \
+#	1 2 ::: \
+#	$SHORT
