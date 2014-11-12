@@ -2,7 +2,10 @@
 
 from __future__ import print_function
 
+import os
+import platform
 import sys
+
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -17,22 +20,34 @@ NEX = [96, 144, 192, 240]
 DISTS = [101, 101, 45, 90]
 
 
+def get_file(run, seismo, *args, **kwargs):
+    if 'scinet' in platform.node() or 'gpc' in platform.node():
+        name = os.path.join('..', run, 'OUTPUT_FILES', seismo)
+    else:
+        name = os.path.join(run, seismo)
+    return np.genfromtxt(name, *args, **kwargs)
+
+
 for i, (nex, dist) in enumerate(zip(NEX, DISTS)):
     for comp in 'ZEN':
         try:
-            ifort = np.genfromtxt('../test_ifort%d_%s/OUTPUT_FILES/S%03d.SY.MX%s.sem.ascii' % (i+1, short, dist, comp))
+            ifort = get_file('test_ifort%d_%s' % (i+1, short),
+                             'S%03d.SY.MX%s.sem.ascii' % (dist, comp))
         except IOError:
             ifort = np.empty((0, 2))
         try:
-            gfortran = np.genfromtxt('../test_gfortran%d_%s/OUTPUT_FILES/S%03d.SY.MX%s.sem.ascii' % (i+1, short, dist, comp))
+            gfortran = get_file('test_gfortran%d_%s' % (i+1, short),
+                                'S%03d.SY.MX%s.sem.ascii' % (dist, comp))
         except IOError:
             gfortran = np.empty((0, 2))
         try:
-            xlf = np.genfromtxt('../test_xlf%d_%s/OUTPUT_FILES/S%03d.SY.MX%s.sem.ascii' % (i+1, short, dist, comp))
+            xlf = get_file('test_xlf%d_%s' % (i+1, short),
+                           'S%03d.SY.MX%s.sem.ascii' % (dist, comp))
         except IOError:
             xlf = np.empty((0, 2))
         try:
-            xlf_strict = np.genfromtxt('../test_xlf_strict%d_%s/OUTPUT_FILES/S%03d.SY.MX%s.sem.ascii' % (i+1, short, dist, comp))
+            xlf_strict = get_file('test_xlf_strict%d_%s' % (i+1, short),
+                                  'S%03d.SY.MX%s.sem.ascii' % (dist, comp))
         except IOError:
             xlf_strict = np.empty((0, 2))
 
